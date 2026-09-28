@@ -1,0 +1,5 @@
+__pycache__/
+.pytest_cache/
+run.log
+issue_body.md
+research_run.txt

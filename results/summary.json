@@ -1,0 +1,178 @@
+{
+  "data": {
+    "symbol": "PAXGUSDT",
+    "first": "2020-08-28",
+    "last": "2026-09-27",
+    "bars": 2222,
+    "train_start": "2021-09-28",
+    "train_end": "2023-12-31",
+    "test_start": "2024-01-01",
+    "candidate_count": 57,
+    "cost_per_side": 0.0015
+  },
+  "chosen": {
+    "family": "ema_cross",
+    "a": 10,
+    "b": 50,
+    "tag": "ema_10_50"
+  },
+  "chosen_train": {
+    "start": "2021-09-28",
+    "end": "2023-12-31",
+    "final": 11540.07,
+    "cagr": 0.065424,
+    "mdd": 0.095465,
+    "sharpe": 0.6605,
+    "trades": 19,
+    "turnover": 8.4,
+    "exposure": 0.52,
+    "locked": false
+  },
+  "chosen_test": {
+    "start": "2024-01-01",
+    "end": "2026-09-27",
+    "final": 17473.88,
+    "cagr": 0.225699,
+    "mdd": 0.167243,
+    "sharpe": 1.1679,
+    "trades": 43,
+    "turnover": 11.09,
+    "exposure": 0.7104,
+    "locked": false
+  },
+  "chosen_full": {
+    "start": "2021-09-28",
+    "end": "2026-09-27",
+    "final": 20185.27,
+    "cagr": 0.15073,
+    "mdd": 0.167243,
+    "sharpe": 0.9731,
+    "trades": 61,
+    "turnover": 9.67,
+    "exposure": 0.6244,
+    "locked": false
+  },
+  "baselines": {
+    "buy_hold_raw": {
+      "start": "2024-01-01",
+      "end": "2026-09-27",
+      "final": 20977.56,
+      "cagr": 0.310157,
+      "mdd": 0.28067,
+      "sharpe": 1.3199,
+      "trades": 1,
+      "turnover": 0.36,
+      "exposure": 1.0,
+      "locked": false
+    },
+    "buy_hold_guarded": {
+      "start": "2024-01-01",
+      "end": "2026-09-27",
+      "final": 20980.28,
+      "cagr": 0.310219,
+      "mdd": 0.237093,
+      "sharpe": 1.4758,
+      "trades": 28,
+      "turnover": 2.78,
+      "exposure": 0.8755,
+      "locked": false
+    }
+  },
+  "stress": {
+    "0.0": {
+      "start": "2024-01-01",
+      "end": "2026-09-27",
+      "final": 18293.83,
+      "cagr": 0.246366,
+      "mdd": 0.16109,
+      "sharpe": 1.2561,
+      "trades": 43,
+      "turnover": 11.1,
+      "exposure": 0.7113,
+      "locked": false
+    },
+    "0.0015": {
+      "start": "2024-01-01",
+      "end": "2026-09-27",
+      "final": 17473.88,
+      "cagr": 0.225699,
+      "mdd": 0.167243,
+      "sharpe": 1.1679,
+      "trades": 43,
+      "turnover": 11.09,
+      "exposure": 0.7104,
+      "locked": false
+    },
+    "0.003": {
+      "start": "2024-01-01",
+      "end": "2026-09-27",
+      "final": 16739.66,
+      "cagr": 0.206663,
+      "mdd": 0.168797,
+      "sharpe": 1.0869,
+      "trades": 45,
+      "turnover": 11.08,
+      "exposure": 0.7069,
+      "locked": false
+    },
+    "0.005": {
+      "start": "2024-01-01",
+      "end": "2026-09-27",
+      "final": 15777.54,
+      "cagr": 0.180897,
+      "mdd": 0.175194,
+      "sharpe": 0.9732,
+      "trades": 42,
+      "turnover": 10.52,
+      "exposure": 0.7013,
+      "locked": false
+    }
+  },
+  "walk_forward": [
+    {
+      "year": 2024,
+      "training_through": "2023-12-31",
+      "tag": "ema_10_50",
+      "test_start": "2024-01-01",
+      "test_end": "2024-12-31",
+      "test_final": 11108.38,
+      "test_cagr": 0.110519,
+      "test_mdd": 0.140291,
+      "test_sharpe": 0.7902,
+      "test_trades": 15,
+      "test_turnover": 13.95,
+      "test_exposure": 0.7582,
+      "test_locked": false
+    },
+    {
+      "year": 2025,
+      "training_through": "2024-12-31",
+      "tag": "ema_20_100",
+      "test_start": "2025-01-01",
+      "test_end": "2025-12-31",
+      "test_final": 16447.0,
+      "test_cagr": 0.6447,
+      "test_mdd": 0.114401,
+      "test_sharpe": 2.5639,
+      "test_trades": 1,
+      "test_turnover": 1.0,
+      "test_exposure": 1.0,
+      "test_locked": false
+    },
+    {
+      "year": 2026,
+      "training_through": "2025-12-31",
+      "tag": "ema_20_100",
+      "test_start": "2026-01-01",
+      "test_end": "2026-09-27",
+      "test_final": 9998.17,
+      "test_cagr": -0.000247,
+      "test_mdd": 0.21771,
+      "test_sharpe": 0.1126,
+      "test_trades": 16,
+      "test_turnover": 7.31,
+      "test_exposure": 0.3595,
+      "test_locked": false
+    }
+  ]
+}

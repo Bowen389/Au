@@ -1,0 +1,69 @@
+{
+  "mode": "PAPER ONLY; NOT EXCHANGE ACCOUNT",
+  "start_date": "2026-02-01",
+  "start_equity": 10000.0,
+  "cash": 9804.824572691328,
+  "units": 0.0,
+  "risk_peak": 11215.789521004572,
+  "halted": false,
+  "cooldown": 0,
+  "locked": false,
+  "last_execution_date": "2026-09-28",
+  "last_signal_date": "2026-09-27",
+  "last_price": 4167.62,
+  "last_equity": 9804.824572691328,
+  "fills": [
+    {
+      "execution_date": "2026-02-01",
+      "signal_date": "2026-01-31",
+      "price_source": "历史下一日开盘价（回测假设）",
+      "price": 4839.88,
+      "signed_usdt": 9985.022466300548,
+      "fee_usdt": 14.977533699450824,
+      "units_after": 2.0630723212766737,
+      "cash_after": 0.0,
+      "equity_after": 9808.671044277817,
+      "target": 1.0,
+      "note": "history-replayed; no real fill"
+    },
+    {
+      "execution_date": "2026-03-19",
+      "signal_date": "2026-03-18",
+      "price_source": "历史下一日开盘价（回测假设）",
+      "price": 4829.03,
+      "signed_usdt": -9962.638131614694,
+      "fee_usdt": 14.943957197422042,
+      "units_after": 0.0,
+      "cash_after": 9947.694174417273,
+      "equity_after": 9947.694174417273,
+      "target": 0.0,
+      "note": "history-replayed; no real fill"
+    },
+    {
+      "execution_date": "2026-08-08",
+      "signal_date": "2026-08-07",
+      "price_source": "历史下一日开盘价（回测假设）",
+      "price": 4344.46,
+      "signed_usdt": 9932.794981944355,
+      "fee_usdt": 14.899192472916532,
+      "units_after": 2.286312909301583,
+      "cash_after": 0.0,
+      "equity_after": 9938.693669250353,
+      "target": 1.0,
+      "note": "history-replayed; no real fill"
+    },
+    {
+      "execution_date": "2026-09-15",
+      "signal_date": "2026-09-14",
+      "price_source": "历史下一日开盘价（回测假设）",
+      "price": 4294.93,
+      "signed_usdt": -9819.553903546648,
+      "fee_usdt": 14.729330855319972,
+      "units_after": 0.0,
+      "cash_after": 9804.824572691328,
+      "equity_after": 9804.824572691328,
+      "target": 0.0,
+      "note": "history-replayed; no real fill"
+    }
+  ]
+}

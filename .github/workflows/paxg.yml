@@ -1,0 +1,79 @@
+name: PAXG paper account daily signal
+on:
+  schedule:
+    - cron: '20 0 * * *' # UTC 00:20 = Beijing 08:20 / Japan 09:20
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'signal=模拟交易+Issue | init=首次历史回填模拟账本'
+        type: choice
+        options: [signal, init]
+        default: signal
+      amount:
+        description: 'init only: USDT 本金（默认使用已随仓库提供的 10,000 USDT 模拟账本）'
+        type: string
+      start_date:
+        description: 'init only: YYYY-MM-DD，默认 2026-02-01'
+        type: string
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: paxg-paper-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONIOENCODING: utf-8
+      MODE: ${{ inputs.mode }}
+      AMOUNT: ${{ inputs.amount }}
+      START_DATE: ${{ inputs.start_date }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: First-time paper account initialization only
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'init'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python paper.py --init "${AMOUNT:-10000}" --start "${START_DATE:-2026-02-01}"
+      - name: Simulate today's trade and prepare notification
+        if: github.event_name == 'schedule' || inputs.mode == 'signal'
+        id: signal
+        shell: bash
+        run: |
+          set -o pipefail
+          python paper.py 2>&1 | tee run.log
+      - name: Commit PAPER account and signal (never real positions)
+        id: ledger
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'paxg-paper-bot'
+          git config user.email 'paxg-paper-bot@users.noreply.github.com'
+          git add paper_portfolio.json paper_fills.csv paxg_daily.csv signal_latest.json signal_latest.txt 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "PAXG paper account $(date -u +%F) [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+      - name: GitHub Issue paper notification or failure alert
+        if: always() && (github.event_name == 'schedule' || inputs.mode == 'signal')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          if [[ '${{ steps.signal.outcome }}' == success && '${{ steps.ledger.outcome }}' == success ]]; then
+            python post_issue.py success
+          else
+            python post_issue.py failure
+          fi
