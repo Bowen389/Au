@@ -13,7 +13,7 @@ def guard(equity, peak, hard_floor, halted, cooldown, trend_ok):
     dd = 1 - equity / max(peak, 1e-9)
     if halted and cooldown >= 10 and trend_ok:
         halted, peak, dd = False, equity, 0.  # local risk-cycle peak, NOT performance peak
-    if dd >= .25:
+    if dd >= .25 and not halted:  # arm once; do NOT reset the cooldown on every flat day below the peak
         halted, cooldown = True, 0
     if halted:
         return 0., True, cooldown + 1, False, peak

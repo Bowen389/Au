@@ -57,3 +57,14 @@ def test_feature_signal_is_causal():
     changed=src.copy();changed.loc[240:,'close']*=2
     after=signal(features(changed),cfg)
     assert original.iloc[:240].equals(after.iloc[:240])
+
+
+def test_halt_cooldown_accumulates_and_rearms():
+    # after a >=25% halt the account sits flat below the peak; the cooldown must still count to 10
+    halted, cool = False, 0
+    for day in range(1, 11):
+        cap, halted, cool, locked, peak = guard(7450, 10000, 7000, halted, cool, False)
+        assert cap == 0 and halted and not locked and cool == day
+    assert guard(7450, 10000, 7000, halted, cool, False)[1] is True   # trend not ok -> stays halted
+    cap, halted, cool, locked, peak = guard(7450, 10000, 7000, halted, cool, True)
+    assert cap == 1 and not halted and cool == 0 and peak == 7450     # re-armed, risk-cycle peak reset
