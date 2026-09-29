@@ -8,9 +8,9 @@
   "halted": false,
   "cooldown": 0,
   "locked": false,
-  "last_execution_date": "2026-09-28",
-  "last_signal_date": "2026-09-27",
-  "last_price": 4167.62,
+  "last_execution_date": "2026-09-29",
+  "last_signal_date": "2026-09-28",
+  "last_price": 4134.88,
   "last_equity": 9804.824572691328,
   "fills": [
     {
@@ -65,5 +65,7 @@
       "target": 0.0,
       "note": "history-replayed; no real fill"
     }
-  ]
+  ],
+  "last_target": 0.0,
+  "last_cap": 0.75
 }
